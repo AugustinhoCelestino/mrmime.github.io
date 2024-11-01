@@ -1,0 +1,16 @@
+<input [(ngModel)]="daySize"/>
+<button (click)="generateDays()">generateDays</button>
+<br />
+@if(days.length > 0){ @for(day of days; track day){
+<br />
+{{ convertNumberToHour(day.values[0]) }},
+{{ convertNumberToHour(day.values[1]) }},
+{{ convertNumberToHour(day.values[2]) }},
+{{ convertNumberToHour(day.values[3]) }},
+Total:
+{{ convertNumberToHour(day.totalHours) }}
+} }
+<br />
+<br />
+Max hours: {{ convertNumberToHour(hoursMouthMax) }}
+Total hours: {{ convertNumberToHour(hoursMouth) }}
