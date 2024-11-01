@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { text } from 'stream/consumers';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   days: any[] = [];
   hoursMouth: number = 0;
   hoursMouthMax: number = 0;
+  firstWeekDays: number = 5;
 
   generateDays() {
     this.days.length = 0;
@@ -90,6 +92,9 @@ export class AppComponent {
 
   copyToClipboard() {
     let textToClip = '';
+    let breakline = `
+  `;
+    let weekDay = this.firstWeekDays;
     this.days.forEach((day) => {
       textToClip +=
         this.convertNumberToHour(day.values[0]) +
@@ -99,8 +104,14 @@ export class AppComponent {
         this.convertNumberToHour(day.values[2]) +
         '	' +
         this.convertNumberToHour(day.values[3]) +
-        `
-      `;
+        breakline;
+
+      weekDay--;
+
+      if (weekDay <= 0) {
+        weekDay = 5;
+        textToClip += breakline + breakline;
+      }
     });
     navigator.clipboard.writeText(textToClip);
   }

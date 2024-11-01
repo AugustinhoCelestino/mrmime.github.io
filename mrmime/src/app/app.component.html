@@ -1,4 +1,5 @@
-<input [(ngModel)]="daySize"/>
+days:<input [(ngModel)]="daySize"/><br>
+first week days<input [(ngModel)]="firstWeekDays"/><br>
 <button (click)="generateDays()">generateDays</button>
 <br />
 @if(days.length > 0){ @for(day of days; track day){
